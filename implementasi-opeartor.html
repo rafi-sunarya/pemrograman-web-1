@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Kasir Tiket BUS GO</h2>
+    <p id="output"></p>
+
+    <script>
+      //variable
+      let hargaTiket = 75000;
+      let jumlahTiket = 3;
+      let biayaAdmin = 5000;
+      let diskon = 0;
+
+      //operator aritmatika
+      let subtotal = hargaTiket * jumlahTiket; //menghitung subtotal
+
+      //operator pembanding
+      if (jumlahTiket >= 3) {
+        diskon = 10000; //diskon 10k untuk pembelian 3 tiket atau lebih
+      }
+
+      //operator aritmatika
+      let totalBayar = subtotal + biayaAdmin - diskon; //menghitung total bayar
+
+      //operator penugasan
+      let keterangan = "";
+      console.log("=== Detail Pembelian Tiket ===\n");
+      console.log("Harga Tiket: Rp" + hargaTiket + "\n");
+      console.log("Jumlah Tiket: " + jumlahTiket + "\n");
+      console.log("Subtotal: Rp" + subtotal + "\n");
+      console.log("Biaya Admin: Rp" + biayaAdmin + "\n");
+      console.log("Diskon: Rp" + diskon + "\n");
+      console.log("Total Bayar: Rp" + totalBayar + "\n");
+
+      if (totalBayar > 200000) {
+        console.log(
+          "Keterangan: Pembelian tiket melebihi Rp200.000, harap cek kembali.",
+        );
+      } else {
+        console.log("Keterangan: Pembelian tiket berhasil.");
+      }
+
+      //output Javascript ke html
+      document.getElementById("output").innerText = keterangan;
+    </script>
+  </body>
+</html>
