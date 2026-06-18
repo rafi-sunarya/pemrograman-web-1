@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh Inheritance JavaScript</title>
+</head>
+<body>
+
+    <h1>Contoh Class Inheritance JavaScript</h1>
+
+    <button onclick="tampilkanData()">
+        Tampilkan Data
+    </button>
+
+    <p id="hasil"></p>
+
+    <script>
+        // Parent Class
+        class Kendaraan {
+            constructor(merk, tahun) {
+                this.merk = merk;
+                this.tahun = tahun;
+            }
+
+            infoKendaraan() {
+                return `
+                    Merk: ${this.merk}<br>
+                    Tahun: ${this.tahun}
+                `;
+            }
+        }
+
+        // Child Class
+        class Mobil extends Kendaraan {
+            constructor(merk, tahun, warna) {
+                super(merk, tahun);
+                this.warna = warna;
+            }
+
+            infoMobil() {
+                return `
+                    ${this.infoKendaraan()}<br>
+                    Warna: ${this.warna}
+                `;
+            }
+        }
+
+        function tampilkanData() {
+            const mobil = new Mobil(
+                "Toyota Avanza",
+                2024,
+                "Hitam"
+            );
+
+            document.getElementById("hasil").innerHTML =
+                mobil.infoMobil();
+        }
+    </script>
+
+</body>
+</html>

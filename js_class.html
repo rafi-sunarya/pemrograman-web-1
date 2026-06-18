@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh Class JavaScript</title>
+</head>
+<body>
+
+    <h1>Contoh Class JavaScript</h1>
+
+    <button onclick="tampilkanMahasiswa()">
+        Tampilkan Data Mahasiswa
+    </button>
+
+    <p id="hasil"></p>
+
+    <script>
+        class Mahasiswa {
+            constructor(nama, nim, jurusan) {
+                this.nama = nama;
+                this.nim = nim;
+                this.jurusan = jurusan;
+            }
+
+            info() {
+                return `
+                    Nama: ${this.nama}<br>
+                    NIM: ${this.nim}<br>
+                    Jurusan: ${this.jurusan}
+                `;
+            }
+        }
+
+        function tampilkanMahasiswa() {
+            const mhs = new Mahasiswa(
+                "Muhammad Rafi Sunarya",
+                "231011450469",
+                "Teknik Informatika"
+            );
+
+            document.getElementById("hasil").innerHTML = mhs.info();
+        }
+    </script>
+
+</body>
+</html>
