@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Data Form Mahasiswa</h2>
+
+    <!-- buat form data mahasiswa yang berisi input untuk nama, nim, umur, jurusan, fakultas, dan hobi -->
+    <form id="mahasiswaForm">
+      <label for="nama">Nama:</label>
+      <input type="text" id="nama" name="nama" required /><br /><br />
+
+      <label for="nim">NIM:</label>
+      <input type="text" id="nim" name="nim" required /><br /><br />
+
+      <label for="jurusan">Jurusan:</label>
+      <select id="jurusan" name="jurusan" required>
+        <option value="">Pilih Jurusan</option>
+        <option value="Informatika">Informatika</option>
+        <option value="Sistem Informasi">Sistem Informasi</option>
+        <option value="Teknik Informatika">Teknik Informatika</option>
+        <option value="Sains Data">Sains Data</option>
+        <option value="Teknik Komputer">Teknik Komputer</option></select
+      ><br /><br />
+
+      <label for="fakultas">Fakultas:</label>
+      <select id="fakultas" name="fakultas" required>
+        <option value="">Pilih Fakultas</option>
+        <option value="Ilmu Komputer">Ilmu Komputer</option>
+        <option value="Teknik">Teknik</option>
+        <option value="Ekonomi">Ekonomi</option>
+        <option value="Hukum">Hukum</option>
+        <option value="Kedokteran">Kedokteran</option></select
+      ><br /><br />
+
+      <button type="submit">Tambah Mahasiswa</button>
+      <button type="button" id="uploadButton">Upload Data Mahasiswa</button>
+    </form>
+    <br />
+
+    <!-- tabel data mahasiswa -->
+    <h3>Daftar Mahasiswa</h3>
+    <table id="mahasiswaTable" border="1" cellpadding="8">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama</th>
+          <th>NIM</th>
+          <th>Jurusan</th>
+          <th>Fakultas</th>
+          <th>Tombol Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="mahasiswaTableBody"></tbody>
+    </table>
+
+    <script>
+      const mahasiswaData = [];
+      const form = document.getElementById("mahasiswaForm");
+      const tableBody = document.getElementById("mahasiswaTableBody");
+      const uploadButton = document.getElementById("uploadButton");
+
+      function deleteMahasiswa(index) {
+        mahasiswaData.splice(index, 1);
+        renderTable();
+      }
+
+      function renderTable() {
+        tableBody.innerHTML = "";
+
+        mahasiswaData.forEach((mhs, index) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${mhs.nama}</td>
+            <td>${mhs.nim}</td>
+            <td>${mhs.jurusan}</td>
+            <td>${mhs.fakultas}</td>
+            <td>
+            <button type="detail" onclick="alert('Nama: ${mhs.nama}\nNIM: ${mhs.nim}\nJurusan: ${mhs.jurusan}\nFakultas: ${mhs.fakultas}')")>Detail</button>
+            <button type="button" onclick="deleteMahasiswa(${index})">Hapus</button></td>
+          `;
+          tableBody.appendChild(row);
+        });
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const nama = document.getElementById("nama").value.trim();
+        const nim = document.getElementById("nim").value.trim();
+        const jurusan = document.getElementById("jurusan").value;
+        const fakultas = document.getElementById("fakultas").value;
+
+        mahasiswaData.push({ nama, nim, jurusan, fakultas });
+        renderTable();
+        form.reset();
+      });
+
+      uploadButton.addEventListener("click", () => {
+        if (mahasiswaData.length === 0) {
+          alert("Tidak ada data mahasiswa untuk diupload.");
+          return;
+        }
+
+        const json = JSON.stringify(mahasiswaData, null, 2);
+        const blob = new Blob([json], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "data_mahasiswa.json";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      });
+    </script>
+  </body>
+</html>
