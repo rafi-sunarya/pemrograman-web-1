@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studi Kasus Operator JavaScript - Laundry</title>
+</head>
+<body>
+    <h2>Studi Kasus: Sistem Laundry Sederhana</h2>
+    <p>Buka console browser untuk melihat output program.</p>
+
+    <script>
+        // Studi Kasus: Sistem Laundry Sederhana
+
+        // Data pelanggan dan layanan laundry
+        let namaPelanggan = "Lucyyy";
+        let jenisLayanan = "Cuci Kering";
+        let hargaPerKg = 7000;
+        let beratLaundry = 6;
+        let member = true;
+        let antarJemput = true;
+        let biayaAntarJemput = 5000;
+        let hariPengerjaan = 2;
+
+        // Operator aritmatika (*)
+        let subtotal = hargaPerKg * beratLaundry;
+
+        // Operator perbandingan (>=)
+        let dapatDiskon = subtotal >= 40000;
+
+        // Operator logika (&&)
+        let diskon = 0;
+        if (dapatDiskon && member) {
+            diskon = subtotal * 0.15;
+        }
+
+        // Operator assignment (-=)
+        let totalBayar = subtotal;
+        totalBayar -= diskon;
+
+        // Operator assignment (+=)
+        if (antarJemput) {
+            totalBayar += biayaAntarJemput;
+        }
+
+        // Operator ternary (? )
+        let statusDiskon = diskon > 0 ? "Mendapat diskon member" : "Tidak mendapat diskon";
+
+        // Operator string (+)
+        let estimasiSelesai = hariPengerjaan + " hari";
+        let pesan = "Laundry atas nama " + namaPelanggan + " dengan layanan " + jenisLayanan + " berhasil diproses.";
+
+        // Output
+        console.log("Nama Pelanggan:", namaPelanggan);
+        console.log("Jenis Layanan:", jenisLayanan);
+        console.log("Harga per Kg:", hargaPerKg);
+        console.log("Berat Laundry:", beratLaundry + " kg");
+        console.log("Subtotal:", subtotal);
+        console.log("Diskon:", diskon);
+        console.log("Biaya Antar Jemput:", biayaAntarJemput);
+        console.log("Total Bayar:", totalBayar);
+        console.log("Status Diskon:", statusDiskon);
+        console.log("Estimasi Selesai:", estimasiSelesai);
+        console.log(pesan);
+    </script>
+</body>
+</html>

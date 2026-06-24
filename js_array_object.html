@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //array objek mahasiswa sebanyak 5
+        let mahasiswa = [
+            {nama : "John Doe", nim : "123456", jurusan : "Teknik Informatika", fakultas : "Fakultas Teknologi Informasi"},
+            {nama : "Jane Smith", nim : "654321", jurusan : "Sistem Informasi", fakultas : "Fakultas Teknologi Informasi"},
+            {nama : "Michael Johnson", nim : "789012", jurusan : "Teknik Elektro", fakultas : "Fakultas Teknik"},
+            {nama : "Emily Davis", nim : "345678", jurusan : "Teknik Mesin", fakultas : "Fakultas Teknik"},
+            {nama : "David Wilson", nim : "901234", jurusan : "Teknik Sipil", fakultas : "Fakultas Teknik"}
+        ];
+        //menampilkan data mahasiswa
+        for(let i = 0; i < mahasiswa.length; i++){
+            document.write("Nama: " + mahasiswa[i].nama);
+            document.write("<br>NIM: " + mahasiswa[i].nim);
+            document.write("<br>Jurusan: " + mahasiswa[i].jurusan);
+            document.write("<br>Fakultas: " + mahasiswa[i].fakultas);
+            document.write("<br><br>");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Mahasiswa</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        input, select, button { margin: 5px 0; padding: 5px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+   .aksi-btn { margin-right: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<h2>Data Mahasiswa</h2>
+
+<label>NIM:</label><br>
+<input type="text" id="nim"><br>
+
+<label>Nama:</label><br>
+<input type="text" id="nama"><br>
+
+<label>Jurusan:</label><br>
+<select id="jurusan" onchange="updateFakultas()">
+    <option value="">Pilih Jurusan</option>
+    <option value="Teknik Informatika">Teknik Informatika</option>
+    <option value="Sistem Informasi">Sistem Informasi</option>
+</select><br>
+
+<label>Fakultas:</label><br>
+<select id="fakultas">
+    <option value="">Pilih Jurusan Dulu</option>
+</select><br>
+
+<button onclick="tambahMahasiswa()">Tambah Mahasiswa</button>
+<button onclick="updateMahasiswa()">Update Data Mahasiswa</button>
+
+<h3>Daftar Mahasiswa</h3>
+<table>
+    <thead>
+        <tr>
+            <th>NIM</th>
+            <th>Nama</th>
+            <th>Jurusan</th>
+            <th>Fakultas</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody id="tabelMahasiswa"></tbody>
+</table>
+
+<script>
+    let dataMahasiswa = [];
+    let editIndex = -1;
+
+    // Data fakultas sesuai jurusan
+    const dataFakultas = {
+        "Teknik Informatika": ["Fakultas Ilkom", "Fakultas TI", "Fakultas Sains dan Teknologi"],
+        "Sistem Informasi": ["Fakultas Ilkom", "Fakultas TI", "Fakultas Sains dan Teknologi"]
+    };
+
+    function updateFakultas() {
+        let jurusan = document.getElementById("jurusan").value;
+        let fakultasSelect = document.getElementById("fakultas");
+        
+        fakultasSelect.innerHTML = '<option value="">Pilih Fakultas</option>';
+        
+        if(jurusan && dataFakultas[jurusan]) {
+            dataFakultas[jurusan].forEach(fak => {
+                fakultasSelect.innerHTML += `<option value="${fak}">${fak}</option>`;
+            });
+        }
+    }
+
+    function tampilkanTabel() {
+        let tbody = document.getElementById("tabelMahasiswa");
+        tbody.innerHTML = "";
+        
+        dataMahasiswa.forEach((mhs, index) => {
+            tbody.innerHTML += `
+                <tr>
+                    <td>${mhs.nim}</td>
+                    <td>${mhs.nama}</td>
+                    <td>${mhs.jurusan}</td>
+                    <td>${mhs.fakultas}</td>
+                    <td>
+                        <button class="aksi-btn" onclick="editMahasiswa(${index})">Edit</button>
+                        <button class="aksi-btn" onclick="hapusMahasiswa(${index})">Hapus</button>
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    function tambahMahasiswa() {
+        let nim = document.getElementById("nim").value;
+        let nama = document.getElementById("nama").value;
+        let jurusan = document.getElementById("jurusan").value;
+        let fakultas = document.getElementById("fakultas").value;
+
+        if(nim == "" || nama == "" || jurusan == "" || fakultas == "") {
+            alert("Semua field harus diisi!");
+            return;
+        }
+
+        dataMahasiswa.push({nim, nama, jurusan, fakultas});
+        resetForm();
+        tampilkanTabel();
+    }
+
+    function editMahasiswa(index) {
+        editIndex = index;
+        let mhs = dataMahasiswa[index];
+        document.getElementById("nim").value = mhs.nim;
+        document.getElementById("nama").value = mhs.nama;
+        document.getElementById("jurusan").value = mhs.jurusan;
+        updateFakultas();
+        document.getElementById("fakultas").value = mhs.fakultas;
+    }
+
+    function updateMahasiswa() {
+        if(editIndex == -1) {
+            alert("Pilih data yang mau diupdate dulu dengan klik Edit");
+            return;
+        }
+
+        dataMahasiswa[editIndex].nim = document.getElementById("nim").value;
+        dataMahasiswa[editIndex].nama = document.getElementById("nama").value;
+        dataMahasiswa[editIndex].jurusan = document.getElementById("jurusan").value;
+        dataMahasiswa[editIndex].fakultas = document.getElementById("fakultas").value;
+
+        resetForm();
+        editIndex = -1;
+        tampilkanTabel();
+    }
+
+    function hapusMahasiswa(index) {
+        if(confirm("Yakin mau hapus data ini?")) {
+            dataMahasiswa.splice(index, 1);
+            tampilkanTabel();
+        }
+    }
+
+    function resetForm() {
+        document.getElementById("nim").value = "";
+        document.getElementById("nama").value = "";
+        document.getElementById("jurusan").value = "";
+        document.getElementById("fakultas").innerHTML = '<option value="">Pilih Jurusan Dulu</option>';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <label for="">NAMA</label>
+        <input type="text" id="nama" name="nama">
+        <label for="">Alamat</label>
+        <input type="text" id="alamat" name="alamat">
+        <button type="submit" onclick="proses()">SUBMIT</button>
+    </form>
+    <p id="hasil"></p>
+    <script>
+        function proses(){
+            let nama = document.getElementById("nama").value;
+            let alamat = document.getElementById("alamat").value;
+            alert(nama+" "+alamat);
+            // alert("Lucyy "+jl.tokyo raya no 23");
+            document.getElementById("hasil").innerHTML = "nama saya "+nama+"alamat saya "+alamat;
+        };
+    </script>
+</body>
+</html>

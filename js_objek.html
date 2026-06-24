@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //membuat objek mahasiswa nim nama jurusan fakultas key: value 
+        let maha = {
+            nim : "123456",
+            nama : "John Doe",
+            jurusan : "Teknik Informatika",
+            fakultas : "Fakultas Teknologi Informasi",
+        };
+        // menampilkan objek mahasiswa
+        document.write("Informasi Mahasiswa:"); 
+        document.write("<br>NIM: " + maha.nim);
+        document.write("<br>Nama: " + maha.nama);
+        document.write("<br>Jurusan: " + maha.jurusan);
+        document.write("<br>Fakultas: " + maha.fakultas);
+        // objek mahasiswa dengan method    
+        let maha2 = {
+            nim : "123456",
+            nama : "John Doe",
+            jurusan : "Teknik Informatika",
+            fakultas : "Fakultas Teknologi Informasi",
+            tampilkanInfo: function(){
+                return "Hello, nama saya "+this.nama+" dengan NIM "+this.nim+" jurusan "+this.jurusan+" fakultas "+this.fakultas;
+            }
+        };
+        // memanggil method perkenalan
+        ducument.write("method perkenalan: "+maha2.tampilkanInfo());
+
+    </script>
+</body>
+</html>

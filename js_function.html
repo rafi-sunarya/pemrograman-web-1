@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function nama(){
+            document.write("ini dari function nama");
+        };
+        nama();
+
+        function identitas(nama, alamat){
+            document.write("<br> nama saya "+nama+" alamat saya di "+alamat+"<br>");
+        };
+        identitas("lucyy", "Tangerang");
+
+        function Tanggal(){
+            let tanggal = new Date();
+            return tanggal;
+        }
+
+        let hasilTanggal = Tanggal();
+        document.write(hasilTanggal);
+    </script>
+</body>
+</html>

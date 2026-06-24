@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//array number
+let numbers = [1, 2, 3, 4, 5];
+document.write("Array Number: " + numbers);
+document.write("<br>Jumlah Elemen: " + numbers.length);
+
+//array string
+let fruits = ["Apple", "Banana", "Cherry"];
+document.write("<br><br>Array String: " + fruits);
+document.write("<br>Jumlah Elemen: " + fruits.length);
+
+//array campuran
+let mixedArray = [1, "Hello", true, null];
+document.write("<br><br>Array Campuran: " + mixedArray);
+document.write("<br>Jumlah Elemen: " + mixedArray.length);
+
+//tampilkan elemen tertentu
+document.write("<br><br>Elemen Pertama: " + numbers[0]);
+document.write("<br>Elemen Kedua: " + fruits[1]);
+
+//ubah elemen dengan loop
+for(let i=0; i<numbers.length; i++){
+    numbers[i] = numbers[i] * 2; //mengalikan setiap elemen dengan 2
+}
+document.write("<br><br>Array Number Setelah Diubah: " + numbers);
+    </script>
